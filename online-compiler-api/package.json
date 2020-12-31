@@ -1,0 +1,26 @@
+{
+  "name": "online_compiler",
+  "version": "1.0.0",
+  "description": "This is personal online compiler API supporting 5 languages C,C++,Java,Javascript,Python ",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "online",
+    "compiler",
+    "programming",
+    "languages",
+    "api"
+  ],
+  "author": "yogendra maarisetty",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compile-run": "^2.3.2",
+    "express": "^4.17.1",
+    "joi": "^17.2.1",
+    "mongoose": "^5.10.0",
+    "nodemon": "^2.0.4"
+  }
+}

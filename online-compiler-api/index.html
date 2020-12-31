@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Compiler</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form method="post" action="/">
+      <div>
+        <select id="lang" name="language_id">
+          <option value=49>c</option>
+          <option value=54>cpp</option>
+          <option value=71>python</option>
+          <option value=63>node</option>
+          <option value=62>java</option>
+      </select>
+    </div>
+    <div>
+        <textarea id="code" style="
+        height: 200px;
+        width: 500px;
+    " name="source_code" placeholder="Write your code here"></textarea>
+    <div>
+    <textarea id="input" placeholder="stdin" name="stdin"></textarea>
+    <textarea id="eo" name="expected_output" placeholder="expected"></textarea>
+    <input id="t" type="number" name="timeout" value=1000 min=1000 max =10000 placeholder="Time limit">
+</div>    
+</div>
+    <div>
+        <button id="btn" type="button">Submit</button>
+    </div>
+    </form>
+    <textarea id="output" style="
+    height: 100px;
+    width: 500px;
+"  disabled></textarea>
+
+<br><br>
+<h3>Sample codes</h3>
+<h4>C code</h4>
+<pre>#include &ltstdio.h&gt
+    int main(){
+    for(int i=0;i&lt100;i++){
+       printf("This is C code %d\n",i);
+    }
+    return 0;
+    }</pre>
+<hr>
+<h4>c++ code</h4>
+<pre>
+    #include &ltiostream&gt
+
+        using namespace std;
+        
+        int main() {
+            int x=10;
+            int y=25;
+            int z=x+y;
+        
+            cout<<"Sum of x+y = " << z;
+        }
+</pre>
+<hr>
+<h4>java code</h4>
+<pre>
+    public class MyClass {
+        public static void main(String args[]) {
+          int x=10;
+          int y=25;
+          int z=x+y;
+    
+          System.out.println("Java code out put \n of x+y = " + z);
+        }
+    }
+</pre>
+<hr>
+<h4>javascript code</h4>
+<pre>
+    var x = 10;
+var y = 25;
+var z = x + y;
+
+console.log(" Javascript code x + y = " + z);
+
+</pre>
+<hr>
+<h4>python code</h4>
+<pre>
+    x=10;
+    y=25;
+    z=x+y;
+    
+    print ("python code sum of x+y =", z);
+</pre>
+<hr>
+</body>
+<script type="text/javascript">
+$('#btn').click(function()
+{
+    $("#output").text("Loading....");
+
+    $.ajax({
+    type: 'POST',url: '',dataType: 'json',cache: false,async: true,
+    data: {
+        language_id:parseInt($("#lang").val()),
+        source_code: $("#code").val(),
+        stdin: $("#input").val(),
+        expected_output:$("#eo").val(),
+        cpu_time_limit: parseInt($("#t").val())   
+            },
+            success: function(json){
+               console.log(JSON.stringify(json));
+               if(json.stderr==null)
+               $("#output").text(json.stdout);
+               else
+               $("#output").text(json.stderr);
+
+               alert(json.status.description);
+
+              
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                console.log(errorThrown);
+            }
+
+});
+
+})
+
+</script>
+</html>
