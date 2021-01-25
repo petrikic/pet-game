@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Compiler</title>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script defer src="/js/load.js"></script>
+    <script defer src="/js/post.js"></script>
+</head>
+
+<body>
+    <form method="post" action="/">
+        <div>
+            <textarea id="code" style="
+        height: 200px;
+        width: 500px;
+    " name="source_code" disabled placeholder="Write your code here"></textarea>
+        </div>
+        <div>
+            <button id="btn" type="button">Submit</button>
+            <input type="file" id="file-input" />
+        </div>
+    </form>
+    <textarea id="output" style="
+    height: 100px;
+    width: 500px;
+" disabled></textarea>
