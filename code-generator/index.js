@@ -29,7 +29,9 @@ app.post('/', async (req, res) => {
     return res.send(error);
   } else {
     const response = await run_code(req.body, res);
-    console.log(response)
+    console.log(response);
+    const hash = crc32.str(JSON.stringify(response)).toString(16);
+    response.stdout = hash;
     return res.send(response);
   }
 });
